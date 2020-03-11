@@ -29,7 +29,9 @@ For example:
 
 
 #####################################
+
           Instructions
+          
 #####################################
 --- From the script directory, launch the script pipeline.sh in the following way:
 > bash pipeline.sh [Hybrid name] [ParentA name] [ParentB name]

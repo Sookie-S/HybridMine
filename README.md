@@ -28,9 +28,9 @@ For example:
 - Seubayanus_orf.fasta for the Saccharomyces eubayanus parental strain
 
 
-################################################
-                Instructions
-################################################
+#####################################
+          Instructions
+#####################################
 --- From the script directory, launch the script pipeline.sh in the following way:
 > bash pipeline.sh [Hybrid name] [ParentA name] [ParentB name]
 

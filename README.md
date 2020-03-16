@@ -5,6 +5,11 @@ Author: Soukaina Timouma
 Institution: Manchester Institute of Biotechnology, University of Manchester
 Corresponding mail: soukaina.timouma@manchester.ac.uk
 
+
+- Install BLASTP 2.6.0+ program on your machine.
+ubuntu machine:
+>sudo apt-get install ncbi-blast+
+          
 In Current Directory, create:
 - Script directory
 - Data directory

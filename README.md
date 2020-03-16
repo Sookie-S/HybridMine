@@ -43,7 +43,7 @@ For example:
 --- From the script directory, launch the script pipeline.sh in the following way:
 > bash pipeline.sh [Hybrid name] [ParentA name] [ParentB name]
 
-For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scereviviae_orf.fasta" file):
+For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scerevisiae_orf.fasta" file):
 > bash pipeline.sh Spastorianus Scerevisiae Seubayanus
 
 The script will go automatically on the Data folder to pick the corresponding ORFs fasta files.

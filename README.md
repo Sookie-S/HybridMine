@@ -1,4 +1,4 @@
-# HybridMiner
+# HybridMine
 Fast and accurate parental allele inheritance prediction tool for hybrid species
 
 Author: Soukaina Timouma

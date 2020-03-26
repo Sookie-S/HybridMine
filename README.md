@@ -1,11 +1,6 @@
 # HybridMine
 Fast and accurate parental allele inheritance prediction tool for hybrid species
 
-Author: Soukaina Timouma
-Institution: Manchester Institute of Biotechnology, University of Manchester
-Corresponding mail: soukaina.timouma@manchester.ac.uk
-
-
 - Install BLASTP 2.6.0+ program on your machine.
 ubuntu machine:
 >sudo apt-get install ncbi-blast+

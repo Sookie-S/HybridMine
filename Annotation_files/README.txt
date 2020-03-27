@@ -11,16 +11,16 @@ Files:
 
 2- We structurally annotated the four S. pastorianus strains using the Yeast Genome Annotation Pipeline (Proux-Wéra et al., 2012)
 
-3- We extracted using a Python 3.6 script we developped all the ORFs sequences, and stored them in new FASTA files
+3- We extracted using a Python 3.6 script we developed all the ORFs sequences, and we stored them in new FASTA files
 Files: 
 - CBS1503_orf.fasta
 - CBS1513_orf.fasta
 - CBS1538_orf.fasta
 - WS3470_orf.fasta
 
-4- We applied HybridMine pipeline to the four strains, containing the parental allele name for all the genes identified as inherited from a parent.
+4- We applied HybridMine pipeline to the four strains
 
-5- We generated annotation files in GFF3 format. The files have been zipped due to their size.
+5- We generated annotation files in GFF3 format. The fake gene IDs have been replaced by the parental allele name for all the genes identified as inherited from a parent. The files have been zipped due to their size.
 Files:
 - annotation_Saccharomyces_pastorianus_CBS1503.zip
 - annotation_Saccharomyces_pastorianus_CBS1513.zip

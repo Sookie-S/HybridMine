@@ -19,6 +19,11 @@ Files:
 - WS3470_orf.fasta
 
 4- We applied HybridMine pipeline to the four strains
+Files:
+- Saccharomyces_pastorianus_CBS1503_orthologs_paralogs_inference.xlsx
+- Saccharomyces_pastorianus_CBS1513_orthologs_paralogs_inference.xlsx
+- Saccharomyces_pastorianus_CBS1538_orthologs_paralogs_inference.xlsx
+- Saccharomyces_pastorianus_WS3470_orthologs_paralogs_inference.xlsx
 
 5- We generated annotation files in GFF3 format. The fake gene IDs have been replaced by the parental allele name for all the genes identified as inherited from a parent. The files have been zipped due to their size.
 Files:

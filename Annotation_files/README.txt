@@ -18,7 +18,7 @@ Files:
 - CBS1538_orf.fasta
 - WS3470_orf.fasta
 
-4- We applied HybridMine pipeline to the four strains
+4- We applied HybridMine pipeline to the four strains, that predicted the allele inheritance and paralogs
 Files:
 - Saccharomyces_pastorianus_CBS1503_orthologs_paralogs_inference.xlsx
 - Saccharomyces_pastorianus_CBS1513_orthologs_paralogs_inference.xlsx

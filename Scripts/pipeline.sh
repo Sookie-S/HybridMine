@@ -4,8 +4,8 @@
 #Script Name	: pipeline.sh                                                                                          
 #Description	: this script runs the pipeline to predict allele inheritance in hybrids                                                                               
 #Args           	: 3 arguments are required                                                                                      
-#Author       	: Soukaina Timouma                                             
-#Email         	: soukaina.timouma@manchester.ac.uk                                           
+#Author       	:                                          
+#Email         	:                                           
 ###################################################################
 
 if [ "$1" = "" ]; then

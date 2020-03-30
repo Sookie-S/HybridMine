@@ -1,18 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = "Soukaina Timouma"
-__credits__ = ["Soukaina Timouma", "Daniela Delneri", "Jean-Marc Schwartz"]
-__version__ = "1.0.1"
-__maintainer__ = "Soukaina Timouma"
-__email__ = "soukaina.timouma@manchester.ac.uk"
-
-"""
-Created on Fri Feb 21 15:30:38 2020
-
-@author: sookie
-"""
-
 import argparse
 
 parser = argparse.ArgumentParser(description='Filenames')

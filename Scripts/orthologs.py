@@ -1,13 +1,5 @@
 #!/usr/bin/python3
 
-__author__ = "Soukaina Timouma"
-__credits__ = ["Soukaina Timouma", "Daniela Delneri", "Jean-Marc Schwartz"]
-__version__ = "1.0.1"
-__maintainer__ = "Soukaina Timouma"
-__email__ = "soukaina.timouma@manchester.ac.uk"
-
-
-
 
 import argparse
 import re

@@ -1,16 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = "Soukaina Timouma"
-__credits__ = ["Soukaina Timouma", "Daniela Delneri", "Jean-Marc Schwartz"]
-__version__ = "1.0.1"
-__maintainer__ = "Soukaina Timouma"
-__email__ = "soukaina.timouma@manchester.ac.uk"
-
-"""
-Created on Wed Oct 30 18:06:29 2019
-"""
-
 #%%
 import os
 import argparse

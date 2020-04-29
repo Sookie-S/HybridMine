@@ -20,6 +20,7 @@ In the "Data" Directory:
 - [Hybrid]_orf.fasta
 - [ParentA]_orf.fasta
 - [ParentB]_orf.fasta
+
 Replace [Hybrid], [ParentA] and [ParentB] by the name of the organisms of interest.
 
 For example:

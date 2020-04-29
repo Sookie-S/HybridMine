@@ -14,7 +14,7 @@ In the "Script" Directory, make sure there is the following scripts:
 - blast_parse.pl
 - orthologs.py
 - paralogs.py
-- prediction_allele_inheritance
+- prediction_allele_inheritance.py
 
 In the "Data" Directory:
 - [Hybrid]_orf.fasta

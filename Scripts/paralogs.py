@@ -45,13 +45,6 @@ global parentB_name
 parentB_name = name.split("_")[2]
 
 ############# PARALOGS SEARCH
-#%%TO DELETE#
-import os
-os.chdir("/home/sookie/Documents/HybridMine_test/Scripts")
-parentA_name ="Scerevisiae"
-parentB_name="FM1318"
-hybrid_name="WS3470"
-#%% 
 organism = []
 organism.append(parentA_name)
 organism.append(parentB_name)

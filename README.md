@@ -43,10 +43,11 @@ For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" 
 The script will go automatically on the Data folder to pick the corresponding ORFs fasta files.
 
 
+#####################################
 
-
-..............................
-######## THE END #########
+          THE END
+          
+#####################################
 
 
 On the meantine HybridMine is running... quick story:

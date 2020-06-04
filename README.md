@@ -16,7 +16,14 @@ In the "Script" Directory, make sure there is the following scripts:
 - homologs.py
 - prediction.py
 
-In the "Data" Directory:
+
+#####################################
+
+          Instructions
+          
+#####################################
+
+In the "Data" Directory add:
 - [Hybrid].fasta
 - [ParentA].fasta
 - [ParentB].fasta
@@ -27,18 +34,11 @@ For example:
 - Seubayanus_orf.fasta for the Saccharomyces eubayanus parental strain
 
 
-#####################################
-
-          Instructions
-          
-#####################################
-
-
---- From the script directory, launch the script pipeline.sh in the following way:
+From the script directory, launch the script pipeline.sh in the following way:
 > bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta]
 
 For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scerevisiae_orf.fasta" file):
-> bash pipeline.sh Spastorianus Scerevisiae Seubayanus
+> bash pipeline.sh Spastorianus_orf.fasta Scerevisiae_orf.fasta eubayanus_orf.fasta
 
 The script will go automatically on the Data folder to pick the corresponding ORFs fasta files.
 

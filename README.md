@@ -11,17 +11,15 @@ In Current Directory, create:
 
 In the "Script" Directory, make sure there is the following scripts:
 - pipeline.sh (the main execution file)
-- blast_parse.pl
+- blast_parser.pl
 - orthologs.py
-- paralogs.py
-- prediction_allele_inheritance.py
+- homologs.py
+- prediction.py
 
 In the "Data" Directory:
-- [Hybrid]_orf.fasta
-- [ParentA]_orf.fasta
-- [ParentB]_orf.fasta
-
-Replace [Hybrid], [ParentA] and [ParentB] by the name of the organisms of interest.
+- [Hybrid].fasta
+- [ParentA].fasta
+- [ParentB].fasta
 
 For example:
 - Spastorianus_orf.fasta for the Saccharomyces pastorianus hybrid
@@ -45,6 +43,15 @@ For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" 
 The script will go automatically on the Data folder to pick the corresponding ORFs fasta files.
 
 
+
+######## THE END #########
+On the meantine HybridMine is running... quick story:
+
+A Wife Sends Her Software Engineer Husband to the Store 
+
+"Could you please go shopping for me and buy one carton of milk. And if they have eggs, get six!"
+
+Later, the husband comes back with six cartons of milk. The wife asks him why he bought six cartons of milk and he replied, "They had eggs."
 
 
 

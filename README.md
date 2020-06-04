@@ -35,7 +35,7 @@ For example:
 
 
 --- From the script directory, launch the script pipeline.sh in the following way:
-> bash pipeline.sh [Hybrid name] [ParentA name] [ParentB name]
+> bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta]
 
 For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scerevisiae_orf.fasta" file):
 > bash pipeline.sh Spastorianus Scerevisiae Seubayanus
@@ -44,7 +44,11 @@ The script will go automatically on the Data folder to pick the corresponding OR
 
 
 
+
+..............................
 ######## THE END #########
+
+
 On the meantine HybridMine is running... quick story:
 
 A Wife Sends Her Software Engineer Husband to the Store 

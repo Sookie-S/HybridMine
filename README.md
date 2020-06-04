@@ -23,7 +23,7 @@ In the "Script" Directory, make sure there is the following scripts:
           
 #####################################
 
-In the "Data" Directory add:
+1 - In the "Data" Directory add:
 - [Hybrid].fasta
 - [ParentA].fasta
 - [ParentB].fasta
@@ -34,7 +34,7 @@ For example:
 - Seubayanus_orf.fasta for the Saccharomyces eubayanus parental strain
 
 
-From the script directory, launch the script pipeline.sh in the following way:
+2 - From the script directory, launch the script pipeline.sh in the following way:
 > bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta]
 
 For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scerevisiae_orf.fasta" file):

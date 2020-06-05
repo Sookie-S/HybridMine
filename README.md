@@ -3,7 +3,7 @@ Fast and accurate parental allele inheritance prediction tool for hybrid species
 
 Pre- requesite:
 
-- Install BLASTP 2.6.0+ program on your machine.
+- Install BLAST 2.6.0+ program on your machine.
 ubuntu machine:
 >sudo apt-get install ncbi-blast+
 

@@ -28,7 +28,16 @@ In that "Results" folder, HybridMine created 5 sub-folders organizing the output
 - "3_Orthologs_Paralogs" folder: contains the 1:1 orthologs identified and the groups of homologs found in the hybrid genome
 - "4_Parental_alleles_prediction" folder: contains the parental alleles prediction results.
 
-##### THE END ########
+############################################################################
+
+
+                                THE END
+
+
+############################################################################
+
+
+
 While your job is running:
 
 Why Can't You Trust Atoms? 

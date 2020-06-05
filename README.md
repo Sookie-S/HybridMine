@@ -41,6 +41,13 @@ For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" 
 The script will go automatically on the Data folder to pick the corresponding ORFs fasta files.
 
 
+A full example of application is given in the directory "Application_example". The output files are also shown.
+See https://github.com/Sookie-S/HybridMine/tree/master/Application_example/
+
+
+
+
+
 #####################################
 
           THE END

@@ -37,8 +37,5 @@ In that "Results" folder, HybridMine created 5 sub-folders organizing the output
 ############################################################################
 
 
-
-While your job is running:
-
 Why Can't You Trust Atoms? 
 They make up everything.

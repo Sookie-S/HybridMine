@@ -1,7 +1,10 @@
 # HybridMine
 Fast and accurate parental allele inheritance prediction tool for hybrid species
 
-Pre- requesite:
+Pre-requesite:
+
+- Python 3.6
+- Perl 
 
 - Install BLAST 2.6.0+ program on your machine.
 ubuntu machine:
@@ -21,21 +24,33 @@ In the "Script" Directory, there is:
 - homologs.py
 - prediction.py
 
-1 - In the "Data" Directory, please add the Fasta files containing the genes of the hybrid genome, parent A and parentB:
+1 - In the "Data" Directory, please add the Fasta files containing the genes of the hybrid genome, and it's two (up to four) parental genomes:
 - [Hybrid].fasta
 - [ParentA].fasta
 - [ParentB].fasta
+- [ParentC].fasta (optional)
+- [ParentD].fasta (optional)
 
-For example:
+
+For example, in our case we have one hybrid genome and two parental strains:
 - Spastorianus_orf.fasta for the Saccharomyces pastorianus hybrid
 - Scerevisiae_orf.fasta for the Saccharomyces cerevisiae parental strain
 - Seubayanus_orf.fasta for the Saccharomyces eubayanus parental strain
 
 
 2 - From the script directory, open a terminal and launch the script pipeline.sh in the following way:
+
+if there is two parental genomes:
 > bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta]
 
-For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scerevisiae_orf.fasta" file):
+or if there is three parental genomes:
+> bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta] [ParentC.fasta]
+
+or if there is four parental genomes:
+> bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta] [ParentC.fasta] [ParentD.fasta]
+
+
+For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scerevisiae_orf.fasta" file), we type:
 > bash pipeline.sh Spastorianus_orf.fasta Scerevisiae_orf.fasta eubayanus_orf.fasta
 
 The script will go automatically on the Data folder to pick the corresponding ORFs fasta files.

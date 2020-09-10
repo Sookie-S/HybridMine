@@ -26,7 +26,7 @@ In that "Results" folder, HybridMine created 5 sub-folders organizing the output
 - "1_Raw_Blast_output" folder: contains raw BLAST outputs of the alignments ordered by HybridMine
 - "2_Best_hits" folder: contains the files resuming the Best hits for each alignments done
 - "3_Orthologs_Paralogs" folder: contains the 1:1 orthologs identified and the groups of homologs found in the hybrid genome
-- "4_Parental_alleles_prediction" folder: contains the parental alleles prediction results.
+- "4_Parental_alleles_prediction" folder: contains the parental alleles prediction results, and some statistics (rank.txt).
 
 ############################################################################
 

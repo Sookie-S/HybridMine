@@ -16,6 +16,11 @@ import argparse
 
 parser = argparse.ArgumentParser(description='nb')
 parser.add_argument('--nb', required=True)
+parser.add_argument('--fH', required=True)
+parser.add_argument('--fA', required=True)
+parser.add_argument('--fB', required=True)
+parser.add_argument('--fC', required=False)
+parser.add_argument('--fD', required=False)
 parser.add_argument('--hyb', required=True)
 parser.add_argument('--pA', required=True)
 parser.add_argument('--pB', required=True)
@@ -31,30 +36,20 @@ global number
 number = nb
 
 
-#print(nb)
-
-
-
-
-
-
 
 if nb == "2":
     
-    hybrid = "hybrid"
-    parentA = "parentA"
-    parentB = "parentB"
-    
-    print("ok")
+    hybrid = args.fH
+    parentA = args.fA
+    parentB = args.fB
+
     identity_file_ParentA = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentA)+".csv"
     identity_file_ParentB = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentB)+".csv"
     identity_file_ParentA_bis = "../Results/2_Best_hits/"+str(parentA)+"-"+str(hybrid)+".csv"
     identity_file_ParentB_bis = "../Results/2_Best_hits/"+str(parentB)+"-"+str(hybrid)+".csv"
-    
     orthoParentA = "../Results/3_Orthologs_Paralogs/"+str(hybrid)+"_"+str(parentA)+"_orthologies.csv"
     orthoParentB = "../Results/3_Orthologs_Paralogs/"+str(hybrid)+"_"+str(parentB)+"_orthologies.csv"
-    
-    
+
     dic_ortho_ParentA = {}
     dic_ortho_ParentB = {}
     dic_identities_ParentA = {}
@@ -62,168 +57,89 @@ if nb == "2":
     
     x = 0
     with open(orthoParentA, "r") as orthoParentA, open(orthoParentB, "r") as orthoParentB:
-        #print("\n----Hybrid - Parent A file")
         linePA = orthoParentA.readline().rstrip() #Line 0 = title
-        #print("\n----Hybrid - Parent B file")
         linePB = orthoParentB.readline().rstrip() #Line 0 = title
         linePA = orthoParentA.readline().rstrip() #Line 1
         linePB = orthoParentB.readline().rstrip() #Line 1
         
         while(linePA):
-            
-            # print("--------------\n\n")
-            # print(linePA)
-    
             p_parentA = linePA.split(',')
-            # print(p_parentA)
             p1_ParentA = p_parentA[0]
-            # print(p1_ParentA)
             p2_ParentA = p_parentA[1]
-            # print(p2_ParentA)
             dic_ortho_ParentA[p1_ParentA] = p2_ParentA
             x+=1
             linePA = orthoParentA.readline().rstrip() #Line 1  
     
         while(linePB):
-            # print("--------------\n\n")
-            # print(linePB)
             p_parentB = linePB.split(',')
-            # print(p_parentB)
             p1_ParentB = p_parentB[0]
-            # print(p1_ParentB)
             p2_ParentB = p_parentB[1]
-            # print(p2_ParentB)    
             dic_ortho_ParentB[p1_ParentB] = p2_ParentB
             linePB = orthoParentB.readline().rstrip() #Line 1
     
     
     with open(identity_file_ParentA, "r") as identity_file_ParentA, open(identity_file_ParentB, "r") as identity_file_ParentB, open(identity_file_ParentA_bis, "r") as identity_file_ParentA_bis, open(identity_file_ParentB_bis, "r") as identity_file_ParentB_bis:
         line_id_parentA = identity_file_ParentA.readline().rstrip() #Line 0 = title
-        # print(line_id_parentA)
         line_id_parentA = identity_file_ParentA.readline().rstrip() #Line 1
-        # print(line_id_parentA)
-    
         line_id_parentB = identity_file_ParentB.readline().rstrip() #Line 0 = title
-        # print(line_id_parentB)
-        line_id_parentB = identity_file_ParentB.readline().rstrip() #Line 1
-        # print(line_id_parentB)
-    
+        line_id_parentB = identity_file_ParentB.readline().rstrip() #Line 1    
         line_id_parentA_bis = identity_file_ParentA_bis.readline().rstrip() #Line 0 = title
-        # print(line_id_parentA_bis)
         line_id_parentA_bis = identity_file_ParentA_bis.readline().rstrip() #Line 1
-        # print(line_id_parentA_bis)
-    
         line_id_parentB_bis = identity_file_ParentB_bis.readline().rstrip() #Line 0 = title
-        # print(line_id_parentB_bis)
         line_id_parentB_bis = identity_file_ParentB_bis.readline().rstrip() #Line 1
-        # print(line_id_parentB_bis)    
         
         while(line_id_parentA):
-            # print(line_id_parentA)
             line_id_parentA = line_id_parentA.split(',')
-            # print("\nTEST")
             name_ParentA = line_id_parentA[0].split(".")[1]
-            # print(name_ParentA)
             ortho_ParentA = line_id_parentA[1].split(".")[1]
-            # print(ortho_ParentA)      
             id_parentA = int(line_id_parentA[3])
-            # print(id_parentA)
             gap_parentA = int(line_id_parentA[4])
-            # print(gap_parentA)    
-            
             dic_identities_ParentA[name_ParentA] = {"Ortholog" :ortho_ParentA, "identities" : id_parentA, "gaps" : gap_parentA }
             line_id_parentA = identity_file_ParentA.readline().rstrip() 
         
         while(line_id_parentB):
-    
             line_id_parentB = line_id_parentB.split(',')
             name_ParentB = line_id_parentB[0].split(".")[1]
-            # print(name_ParentB)
             ortho_ParentB = line_id_parentB[1].split(".",1)[1]
-            # print(ortho_ParentB)
             id_parentB = int(line_id_parentB[3])
-            # print(id_parentB)
             gap_parentB = int(line_id_parentB[4])
-            # print(gap_parentB)    
             dic_identities_ParentB[name_ParentB] = {"Ortholog" :ortho_ParentB, "identities" : id_parentB, "gaps" : gap_parentB }
             line_id_parentB = identity_file_ParentB.readline().rstrip() 
             
         while(line_id_parentA_bis):
-            # print(line_id_parentA_bis)
             line_id_parentA_bis = line_id_parentA_bis.split(',')
-            # print("\nTEST")
             name_ParentA_bis = line_id_parentA_bis[0].split(".")[1]
-            # print(name_ParentA_bis)
             ortho_ParentA_bis = line_id_parentA_bis[1].split(".")[1]
-            # print(ortho_ParentA_bis)      
             id_parentA_bis = int(line_id_parentA_bis[3])
-            # print(id_parentA_bis)
             gap_parentA_bis = int(line_id_parentA_bis[4])
-            # print(gap_parentA_bis)    
-            
             dic_identities_ParentA[name_ParentA_bis] = {"Ortholog" :ortho_ParentA_bis, "identities" : id_parentA_bis, "gaps" : gap_parentA_bis }
             line_id_parentA_bis = identity_file_ParentA_bis.readline().rstrip() 
         
         while(line_id_parentB_bis):
             line_id_parentB_bis = line_id_parentB_bis.split(',')
             name_ParentB_bis = line_id_parentB_bis[0].split(".")[1]
-            # print(name_ParentB_bis)
             ortho_ParentB_bis = line_id_parentB_bis[1].split(".",1)[1]
-            # print(ortho_ParentB_bis)
             id_parentB_bis = int(line_id_parentB_bis[3])
-            # print(id_parentB_bis)
             gap_parentB_bis = int(line_id_parentB_bis[4])
-            # print(gap_parentB_bis)    
             dic_identities_ParentB[name_ParentB_bis] = {"Ortholog" :ortho_ParentB_bis, "identities" : id_parentB_bis, "gaps" : gap_parentB_bis }
             line_id_parentB_bis = identity_file_ParentB_bis.readline().rstrip() 
         
     
     x = 0
     liste_p_hybrid = []
-    
     threshold = 80
-    
-    
+
     with open("../Results/4_Parental_alleles_prediction/genes_inherited_from_"+str(parentA)+".csv","w") as output_ParentA,  open("../Results/4_Parental_alleles_prediction/genes_inherited_from_"+str(parentB)+".csv","w") as output_ParentB,  open("../Results/4_Parental_alleles_prediction/identical_alleles_in_"+str(parentA)+"_AND_"+str(parentB)+".csv","w") as output_ParentAParentB, open("../Results/4_Parental_alleles_prediction/potential_parental_alleles_less_80_percent_identity.csv","w") as output_dodgy:   
         output_ParentA.write("Hybrid" + ',' + str(parentA)+"_ortholog" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
         output_ParentB.write("Hybrid" + ',' + str(parentB)+"_ortholog" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
         output_ParentAParentB.write("Hybrid" + ',' + "Ortholog_ID" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
         output_dodgy.write("Hybrid" + ',' + "Ortholog_ID" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
        
-        
         for k,v in dic_ortho_ParentA.items():
-        
             if k in dic_ortho_ParentB.keys():
-    #            print("1:1 ortholog in Parent A and Parent B")
-    #            
-    #            print(k,v)
-    #            print(k,dic_ortho_ParentB[k])
-    #            
-    #            print(dic_identities_ParentA[k])
-    #            print(dic_identities_ParentB[k])
-    #            
-    #            
-    #            print("trial")
-    #            print(dic_identities_ParentA[k]['Ortholog'])
-    #            print(dic_identities_ParentA[k]['identities'])
-    #            print(dic_identities_ParentA[k]['positives'])
-    #            print(dic_identities_ParentA[k]['gaps'])
-    #            
-    #            print(dic_identities_ParentB[k]['Ortholog'])
-    #            print(dic_identities_ParentB[k]['identities'])
-    #            print(dic_identities_ParentB[k]['positives'])
-    #            print(dic_identities_ParentB[k]['gaps'])
-    #            
-    #            
-    #            if int(dic_identities_ParentA[k]['identities']) < 80 :
-    #               print("\nDODGY: "+str(k))
-    #               print(dic_identities_ParentA[k]['Ortholog'])
-    #               print(dic_identities_ParentA[k]['identities'])
-    
-                    
+
                 if int(dic_identities_ParentA[k]['identities']) > int(dic_identities_ParentB[k]['identities']):
                     if int(dic_identities_ParentA[k]['identities']) >= int(threshold):
-                        # print("Parent A allele")
                         output_ParentA.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         x+=1
@@ -234,7 +150,6 @@ if nb == "2":
                         
                 elif int(dic_identities_ParentA[k]['identities']) < int(dic_identities_ParentB[k]['identities']):
                     if int(dic_identities_ParentB[k]['identities']) >= int(threshold):
-                        # print("Parent B allele")
                         output_ParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                         x+=1
@@ -244,7 +159,6 @@ if nb == "2":
                         x+=1
                    
                 else:
-                    # print("Same copy in Parent A and Parent B")
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                     ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -268,40 +182,11 @@ if nb == "2":
     #    
         for k,v in dic_ortho_ParentB.items():
             if k not in liste_p_hybrid:
-                
-                
-    #            if int(dic_identities_ParentB[k]['identities']) < 80 :
-    #               print("\nDODGY: "+str(k))
-    #               print(dic_identities_ParentB[k]['Ortholog'])
-    #               print(dic_identities_ParentB[k]['identities'])
-                   
                 if k in dic_ortho_ParentA.keys():
-                       
-                    # print("1:1 ortholog in Parent A and Parent B")
-                    
-                    # print(k,v)
-                    # print(k,dic_ortho_ParentB[k])
-                    
-                    # print(dic_identities_ParentA[k])
-                    # print(dic_identities_ParentB[k])
-                    
-                    
-                    # print("trial")
-                    # print(dic_identities_ParentA[k]['Ortholog'])
-                    # print(dic_identities_ParentA[k]['identities'])
-                    # print(dic_identities_ParentA[k]['positives'])
-                    # print(dic_identities_ParentA[k]['gaps'])
-                    
-                    # print(dic_identities_ParentB[k]['Ortholog'])
-                    # print(dic_identities_ParentB[k]['identities'])
-                    # print(dic_identities_ParentB[k]['positives'])
-                    # print(dic_identities_ParentB[k]['gaps'])
-                    
-                               
+
                     if int(dic_identities_ParentA[k]['identities']) > int(dic_identities_ParentB[k]['identities']):
                         
                         if int(dic_identities_ParentA[k]['identities']) >= int(threshold):
-                            # print("Parent A allele")
                             output_ParentA.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                             ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                             x+=1
@@ -312,7 +197,6 @@ if nb == "2":
                             
                     elif int(dic_identities_ParentA[k]['identities']) < int(dic_identities_ParentB[k]['identities']):
                         if int(dic_identities_ParentB[k]['identities']) >= threshold:
-                            # print("Parent B allele")
                             output_ParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                             ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                             x+=1
@@ -322,7 +206,6 @@ if nb == "2":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -340,13 +223,11 @@ if nb == "2":
                         output_dodgy.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                         x+=1    
-                        
-                        
+
                 liste_p_hybrid.append(k)    
-                
+
     
-    
-    #      GROUPING PARALOGS      
+    ###########      GROUPING PARALOGS ###############
     
     dic_ParB_alleles = {}
     dic_ParA_alleles = {}
@@ -358,7 +239,6 @@ if nb == "2":
         for line in parentalA:
             line = line.split("\n")[0]
             line = line.split(",")
-            # print(line)
             dic_ParA_alleles[line[0]] = line[1]
             count_alleleA+=1
     
@@ -401,7 +281,6 @@ if nb == "2":
             else:
                 list_done.append(id1)
                 if (id1 not in list_paralog_already_processed) and (id2 not in list_paralog_already_processed): # new dict[id1] = id2
-                    # print("############CASE 1")
                     dic_paralog[id1] = [id2]
                     list_paralog_already_processed.append(id1)
                     list_paralog_already_processed.append(id2)
@@ -452,15 +331,11 @@ if nb == "2":
         output_paralog.write("Homologs_list"+"\t"+str(parentB)+"-like content"+"\t"+str(hybrid)+" content"+"\t"+str(parentA)+"-like content"+"\n") 
         for elm in dic_paralog:
             total += 1
-    #        nb = 0
             list_paralog = []
             hyb = []
             ParA = []
             ParB = []
-            # print("\n------ELM is: "+str(elm))
             try:
-                # print("TRY 1")
-                # print(dic_alleles[elm])
                 list_paralog.append(dic_alleles[elm])
                 try:
                     temp = dic_ParB_alleles[elm]
@@ -468,16 +343,11 @@ if nb == "2":
                 except:
                     ParA.append(dic_alleles[elm])      
             except:
-                # print("EXCEPT 1")
-                # print(elm) 
                 list_paralog.append(elm)
                 hyb.append(elm)
-            # print("-----Values: ")
             for val in dic_paralog[elm]:
                 nb+=1
                 try:
-                    # print("TRY 2")
-                    # print(dic_alleles[val])
                     list_paralog.append(dic_alleles[val])
                     try:
                         temp = dic_ParB_alleles[val]
@@ -485,36 +355,27 @@ if nb == "2":
                     except:
                         ParA.append(dic_alleles[val]) 
                 except:
-                    # print("EXCEPT 2")
-                    # print(val) 
                     list_paralog.append(val)
                     hyb.append(val)
-            # print(list_paralog)
-            # print(hyb)
-            # print(ParB)
-            # print(ParA)
             output_paralog.write("; ".join(list_paralog)+"\t"+ "; ".join(ParB) + "\t" + "; ".join(hyb) + "\t" + "; ".join(ParA) + "\n")        
                     
 
 
 
 elif nb == "3":
-    
     total_pC_genes = args.pC
     
-    hybrid = "hybrid"
-    parentA = "parentA"
-    parentB = "parentB"
-    parentC = "parentC"
+    hybrid = args.fH
+    parentA = args.fA
+    parentB = args.fB
+    parentC = args.fC
     
     identity_file_ParentA = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentA)+".csv"
     identity_file_ParentB = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentB)+".csv"
     identity_file_ParentC = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentC)+".csv"
-    
     identity_file_ParentA_bis = "../Results/2_Best_hits/"+str(parentA)+"-"+str(hybrid)+".csv"
     identity_file_ParentB_bis = "../Results/2_Best_hits/"+str(parentB)+"-"+str(hybrid)+".csv"
     identity_file_ParentC_bis = "../Results/2_Best_hits/"+str(parentC)+"-"+str(hybrid)+".csv"
-
     orthoParentA = "../Results/3_Orthologs_Paralogs/"+str(hybrid)+"_"+str(parentA)+"_orthologies.csv"
     orthoParentB = "../Results/3_Orthologs_Paralogs/"+str(hybrid)+"_"+str(parentB)+"_orthologies.csv"
     orthoParentC = "../Results/3_Orthologs_Paralogs/"+str(hybrid)+"_"+str(parentC)+"_orthologies.csv"
@@ -523,7 +384,6 @@ elif nb == "3":
     dic_ortho_ParentA = {}
     dic_ortho_ParentB = {}
     dic_ortho_ParentC = {}
-
     dic_identities_ParentA = {}
     dic_identities_ParentB = {}
     dic_identities_ParentC = {}
@@ -564,19 +424,14 @@ elif nb == "3":
     with open(identity_file_ParentA, "r") as identity_file_ParentA, open(identity_file_ParentB, "r") as identity_file_ParentB, open(identity_file_ParentC, "r") as identity_file_ParentC, open(identity_file_ParentA_bis, "r") as identity_file_ParentA_bis, open(identity_file_ParentB_bis, "r") as identity_file_ParentB_bis, open(identity_file_ParentC_bis, "r") as identity_file_ParentC_bis:
         line_id_parentA = identity_file_ParentA.readline().rstrip() #Line 0 = title
         line_id_parentA = identity_file_ParentA.readline().rstrip() #Line 1
-    
         line_id_parentB = identity_file_ParentB.readline().rstrip() #Line 0 = title
         line_id_parentB = identity_file_ParentB.readline().rstrip() #Line 1
-
         line_id_parentC = identity_file_ParentC.readline().rstrip() #Line 0 = title
         line_id_parentC = identity_file_ParentC.readline().rstrip() #Line 1
-        
         line_id_parentA_bis = identity_file_ParentA_bis.readline().rstrip() #Line 0 = title
         line_id_parentA_bis = identity_file_ParentA_bis.readline().rstrip() #Line 1
-    
         line_id_parentB_bis = identity_file_ParentB_bis.readline().rstrip() #Line 0 = title
         line_id_parentB_bis = identity_file_ParentB_bis.readline().rstrip() #Line 1
-
         line_id_parentC_bis = identity_file_ParentC_bis.readline().rstrip() #Line 0 = title
         line_id_parentC_bis = identity_file_ParentC_bis.readline().rstrip() #Line 1
 
@@ -608,7 +463,6 @@ elif nb == "3":
             dic_identities_ParentC[name_ParentC] = {"Ortholog" :ortho_ParentC, "identities" : id_parentC, "gaps" : gap_parentC }
             line_id_parentC = identity_file_ParentC.readline().rstrip() 
                         
-            
             
         while(line_id_parentA_bis):
             line_id_parentA_bis = line_id_parentA_bis.split(',')
@@ -648,15 +502,12 @@ elif nb == "3":
         output_ParentA.write("Hybrid" + ',' + str(parentA)+"_ortholog" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
         output_ParentB.write("Hybrid" + ',' + str(parentB)+"_ortholog" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
         output_ParentC.write("Hybrid" + ',' + str(parentC)+"_ortholog" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
-
         output_ParentAParentB.write("Hybrid" + ',' + "Ortholog_ID" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
         output_dodgy.write("Hybrid" + ',' + "Ortholog_ID" + ',' + "gene_identities" + ',' + "gene_gaps" + '\n')
-       
         
         for k,v in dic_ortho_ParentA.items():
             
             if (k in dic_ortho_ParentB.keys()) and (k in dic_ortho_ParentC.keys()):  ## if in parent A and B and C
-                   
                 if (int(dic_identities_ParentA[k]['identities']) > int(dic_identities_ParentB[k]['identities'])) and (int(dic_identities_ParentA[k]['identities']) > int(dic_identities_ParentC[k]['identities'])):
                     if int(dic_identities_ParentA[k]['identities']) >= int(threshold):
                         output_ParentA.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
@@ -808,7 +659,6 @@ elif nb == "3":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -840,7 +690,6 @@ elif nb == "3":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -871,7 +720,6 @@ elif nb == "3":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent C")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentC[k]['Ortholog']) + ',' + str(dic_identities_ParentC[k]['identities']) + 
@@ -961,7 +809,6 @@ elif nb == "3":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentC[k]['Ortholog']) + ',' + str(dic_identities_ParentC[k]['identities']) + 
@@ -992,7 +839,6 @@ elif nb == "3":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent C")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentC[k]['Ortholog']) + ',' + str(dic_identities_ParentC[k]['identities']) + 
@@ -1053,7 +899,6 @@ elif nb == "3":
             
             
             
-            
     with open("../Results/4_Parental_alleles_prediction/rank.txt", "w") as out:
         out.write("Total number of genes in the hybrid genome: "+str(total_hyb_genes))
         out.write("\nTotal number of genes in the Parent A genome: "+str(total_pA_genes))
@@ -1088,7 +933,6 @@ elif nb == "3":
             else:
                 list_done.append(id1)
                 if (id1 not in list_paralog_already_processed) and (id2 not in list_paralog_already_processed): # new dict[id1] = id2
-                    # print("############CASE 1")
                     dic_paralog[id1] = [id2]
                     list_paralog_already_processed.append(id1)
                     list_paralog_already_processed.append(id2)
@@ -1146,9 +990,7 @@ elif nb == "3":
             ParB = []
             ParC = []
             
-            # print("\n------ELM is: "+str(elm))
             try:
-                # print("TRY 1")
                 list_paralog.append(dic_alleles[elm])
                 try:
                     ParB.append(dic_ParB_alleles[elm])
@@ -1177,11 +1019,6 @@ elif nb == "3":
                     list_paralog.append(val)
                     hyb.append(val)
                     
-                    
-            # print(list_paralog)
-            # print(hyb)
-            # print(ParB)
-            # print(ParA)
             output_paralog.write("; ".join(list_paralog)+"\t"+ "; ".join(hyb) + "\t" + "; ".join(ParA) + "\t" + "; ".join(ParB) + "\t" + "; ".join(ParC) + "\n")        
                     
 
@@ -1193,18 +1030,16 @@ elif nb == "4":
     total_pC_genes = args.pC
     total_pD_genes = args.pD
 
-    hybrid = "hybrid"
-    parentA = "parentA"
-    parentB = "parentB"
-    parentC = "parentC"
-    parentD = "parentD"
+    hybrid = args.fH
+    parentA = args.fA
+    parentB = args.fB
+    parentC = args.fC
+    parentD = args.fD
     
     identity_file_ParentA = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentA)+".csv"
     identity_file_ParentB = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentB)+".csv"
     identity_file_ParentC = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentC)+".csv"
     identity_file_ParentD = "../Results/2_Best_hits/"+str(hybrid)+"-"+str(parentD)+".csv"
-
-    
     identity_file_ParentA_bis = "../Results/2_Best_hits/"+str(parentA)+"-"+str(hybrid)+".csv"
     identity_file_ParentB_bis = "../Results/2_Best_hits/"+str(parentB)+"-"+str(hybrid)+".csv"
     identity_file_ParentC_bis = "../Results/2_Best_hits/"+str(parentC)+"-"+str(hybrid)+".csv"
@@ -1220,8 +1055,6 @@ elif nb == "4":
     dic_ortho_ParentB = {}
     dic_ortho_ParentC = {}
     dic_ortho_ParentD = {}
-
-
     dic_identities_ParentA = {}
     dic_identities_ParentB = {}
     dic_identities_ParentC = {}
@@ -1234,7 +1067,6 @@ elif nb == "4":
         linePB = orthoParentB.readline().rstrip() #Line 0 = title
         linePC = orthoParentC.readline().rstrip() #Line 0 = title
         linePD = orthoParentD.readline().rstrip() #Line 0 = title
-        
         linePA = orthoParentA.readline().rstrip() #Line 1
         linePB = orthoParentB.readline().rstrip() #Line 1
         linePC = orthoParentC.readline().rstrip() #Line 1
@@ -1273,26 +1105,18 @@ elif nb == "4":
     with open(identity_file_ParentA, "r") as identity_file_ParentA, open(identity_file_ParentB, "r") as identity_file_ParentB, open(identity_file_ParentC, "r") as identity_file_ParentC, open(identity_file_ParentD, "r") as identity_file_ParentD, open(identity_file_ParentA_bis, "r") as identity_file_ParentA_bis, open(identity_file_ParentB_bis, "r") as identity_file_ParentB_bis, open(identity_file_ParentC_bis, "r") as identity_file_ParentC_bis, open(identity_file_ParentD_bis, "r") as identity_file_ParentD_bis:
         line_id_parentA = identity_file_ParentA.readline().rstrip() #Line 0 = title
         line_id_parentA = identity_file_ParentA.readline().rstrip() #Line 1
-    
         line_id_parentB = identity_file_ParentB.readline().rstrip() #Line 0 = title
         line_id_parentB = identity_file_ParentB.readline().rstrip() #Line 1
-
         line_id_parentC = identity_file_ParentC.readline().rstrip() #Line 0 = title
         line_id_parentC = identity_file_ParentC.readline().rstrip() #Line 1
-      
         line_id_parentD = identity_file_ParentD.readline().rstrip() #Line 0 = title
         line_id_parentD = identity_file_ParentD.readline().rstrip() #Line 1
-        
-        
         line_id_parentA_bis = identity_file_ParentA_bis.readline().rstrip() #Line 0 = title
         line_id_parentA_bis = identity_file_ParentA_bis.readline().rstrip() #Line 1
-    
         line_id_parentB_bis = identity_file_ParentB_bis.readline().rstrip() #Line 0 = title
         line_id_parentB_bis = identity_file_ParentB_bis.readline().rstrip() #Line 1
-
         line_id_parentC_bis = identity_file_ParentC_bis.readline().rstrip() #Line 0 = title
         line_id_parentC_bis = identity_file_ParentC_bis.readline().rstrip() #Line 1
-
         line_id_parentD_bis = identity_file_ParentD_bis.readline().rstrip() #Line 0 = title
         line_id_parentD_bis = identity_file_ParentD_bis.readline().rstrip() #Line 1
 
@@ -1498,7 +1322,6 @@ elif nb == "4":
                         x+=1
                    
                 else:
-                    # print("Same copy in Parent A and Parent C")
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                     ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentC[k]['Ortholog']) + ',' + str(dic_identities_ParentC[k]['identities']) + 
@@ -1530,7 +1353,6 @@ elif nb == "4":
                         x+=1
                    
                 else:
-                    # print("Same copy in Parent A and Parent D")
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                     ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentD[k]['Ortholog']) + ',' + str(dic_identities_ParentD[k]['identities']) + 
@@ -1572,7 +1394,6 @@ elif nb == "4":
                         x+=1
                         
                 else:
-                    # print("Same copy in Parent A and Parent B and C")
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                     ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -1617,7 +1438,6 @@ elif nb == "4":
                         
             
                 else:
-                    # print("Same copy in Parent A and Parent C and D")
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                     ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
 
@@ -1665,7 +1485,6 @@ elif nb == "4":
                         
             
                 else:
-                    # print("Same copy in Parent A and Parent B and D")
                     output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                     ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
 
@@ -1738,7 +1557,6 @@ elif nb == "4":
                                             ','  + str(dic_identities_ParentD[k]['gaps']) + '\n')
                             x+=1                   
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -1773,7 +1591,6 @@ elif nb == "4":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -1805,7 +1622,6 @@ elif nb == "4":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent B and Parent C")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentC[k]['Ortholog']) + ',' + str(dic_identities_ParentC[k]['identities']) + 
@@ -1837,7 +1653,6 @@ elif nb == "4":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentD[k]['Ortholog']) + ',' + str(dic_identities_ParentD[k]['identities']) + 
@@ -1880,7 +1695,6 @@ elif nb == "4":
                             x+=1
                             
                     else:
-                        # print("Same copy in Parent A and Parent B and C")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -1925,7 +1739,6 @@ elif nb == "4":
                             
                 
                     else:
-                        # print("Same copy in Parent B and Parent C and D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
     
@@ -1973,7 +1786,6 @@ elif nb == "4":
                             
                 
                     else:
-                        # print("Same copy in Parent A and Parent B and D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
     
@@ -2048,7 +1860,6 @@ elif nb == "4":
                                             ','  + str(dic_identities_ParentD[k]['gaps']) + '\n')
                             x+=1                   
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -2083,7 +1894,6 @@ elif nb == "4":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentC[k]['Ortholog']) + ',' + str(dic_identities_ParentC[k]['identities']) + 
@@ -2190,7 +2000,6 @@ elif nb == "4":
                             x+=1
                             
                     else:
-                        # print("Same copy in Parent A and Parent B and C")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -2235,7 +2044,6 @@ elif nb == "4":
                             
                 
                     else:
-                        # print("Same copy in Parent B and Parent C and D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
     
@@ -2281,7 +2089,6 @@ elif nb == "4":
                             
                 
                     else:
-                        # print("Same copy in Parent A and Parent C and D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
     
@@ -2355,7 +2162,6 @@ elif nb == "4":
                                             ','  + str(dic_identities_ParentD[k]['gaps']) + '\n')
                             x+=1                   
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
@@ -2390,7 +2196,6 @@ elif nb == "4":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent A and Parent B")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentD[k]['Ortholog']) + ',' + str(dic_identities_ParentD[k]['identities']) + 
@@ -2422,7 +2227,6 @@ elif nb == "4":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent B and Parent C")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentD[k]['Ortholog']) + ',' + str(dic_identities_ParentD[k]['identities']) + 
@@ -2454,7 +2258,6 @@ elif nb == "4":
                             x+=1
                        
                     else:
-                        # print("Same copy in Parent C and Parent D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentC[k]['Ortholog']) + ',' + str(dic_identities_ParentC[k]['identities']) + 
                                         ','  + str(dic_identities_ParentC[k]['gaps']) + '\n')
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentD[k]['Ortholog']) + ',' + str(dic_identities_ParentD[k]['identities']) + 
@@ -2498,7 +2301,6 @@ elif nb == "4":
                             
                 
                     else:
-                        # print("Same copy in Parent B and Parent C and D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentB[k]['Ortholog']) + ',' + str(dic_identities_ParentB[k]['identities']) + 
                                         ','  + str(dic_identities_ParentB[k]['gaps']) + '\n')
     
@@ -2544,7 +2346,6 @@ elif nb == "4":
                             
                 
                     else:
-                        # print("Same copy in Parent A and Parent C and D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
     
@@ -2592,7 +2393,6 @@ elif nb == "4":
                             
                 
                     else:
-                        # print("Same copy in Parent A and Parent B and D")
                         output_ParentAParentB.write(str(k) + ',' + str(dic_identities_ParentA[k]['Ortholog']) + ',' + str(dic_identities_ParentA[k]['identities']) + 
                                         ','  + str(dic_identities_ParentA[k]['gaps']) + '\n')
     
@@ -2802,11 +2602,6 @@ elif nb == "4":
                     list_paralog.append(val)
                     hyb.append(val)
                     
-                    
-            # print(list_paralog)
-            # print(hyb)
-            # print(ParB)
-            # print(ParA)
             output_paralog.write("; ".join(list_paralog)+"\t"+ "; ".join(hyb) + "\t" + "; ".join(ParA) + "\t" + "; ".join(ParB) + "\t" + "; ".join(ParC) +  "\t" + "; ".join(ParD) + "\n")        
                     
 

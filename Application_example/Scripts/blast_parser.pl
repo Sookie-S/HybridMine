@@ -26,6 +26,7 @@ print ($output "Sequence,Best Hit,e-value,Identities,Gaps,Identities_info,Gaps_i
 my $i = 0;
 my $j = 0;
 open( my $input, "<", $ARGV[0]) or die "Can't open"; # file containing blast results
+
 while(<$input>) {
 
 	#if($i eq 15){
@@ -33,7 +34,7 @@ while(<$input>) {
 	#}
 
 	#print ("$_\n\n");
-	if ($_ =~ m/Query= (\S+) .+$/ and $newHit == 0) {
+	if (($_ =~ m/Query= (\S+) .+$/ or $_ =~ m/Query= (\S+) .*$/) and $newHit == 0) {
 	# print ("\n---------------\n");
 	#if ($newHit == 0 and $_ =~ m/^Query= (\S+).+ (\S+)$/) {
 		$i = $i +1;
@@ -47,7 +48,7 @@ while(<$input>) {
 		# print ("new hit value : $newHit\n");
 	}
 
-	if ( $newHit == 1 and $_ =~ m/No hits found/ or $_ =~ m/> NP_/) {
+	if ( $newHit == 1 and $_ =~ m/No hits found/) {
 	#elsif ($newHit == 1 and $_ =~ m/No hits found/ or $_ =~ m/> NP_/) {
 
 		#We have a ***** No hits found ***** result or we skipped the first (self) hit and we stop looking when the first "> id" tag arrives (end of hits table).
@@ -61,7 +62,7 @@ while(<$input>) {
 	my $evalue = 0;
 
 	#if ( $newHit == 1 and $_ =~ m/^  (\S+\.\d)/ ) {
-	if ( $newHit == 1 and ($_ =~ m/^  (\S+\.\d)/ or $_ =~ m/^  (\S+)/)) {
+	if ( $newHit == 1 and ( $_ =~ m/^(\S+) .*\d+ +\d+.\d+ +$/ or $_ =~ m/^(\S+) .*\d+ +\d+e\-\d+$/) ) {
 		#We have a new query and we look for the first hit line that comes. Since they are already ordered by e-value.
 		#print ("\nline : $_"); #(ex: XP_018224050.1 hypothetical protein DI49_0001, partial [Sacchar...  44.7    1e-05)
 		#print("d1 : $1\n");
@@ -71,7 +72,7 @@ while(<$input>) {
 			#Ignore self-match for paralog search
 			$hit = $1;
 			$hit_backup = $hit;
-			if ( $_ =~ m/\b(\S+)$/ or $_ =~ m/\S+\s+(0.0)\s*$/) {
+			if ( $_ =~ m/\S+\s+\S+\s+(\d+e\-\d+)\s*$/ or $_ =~ m/\S+\s+\S+\s+(\d*\.\d*)\s*$/) {
 				$evalue = $1;
 				$evalue_backup = $evalue;
 				#print ("evalue : $evalue. test : $1\n");

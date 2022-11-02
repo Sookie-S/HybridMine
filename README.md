@@ -30,11 +30,11 @@ In the "Script" Directory, there is:
 - prediction.py
 
 1 - In the "Data" Directory, please add the Fasta files containing the genes of the hybrid genome, and it's two (up to four) parental genomes:
-- [Hybrid].fasta
-- [ParentA].fasta
-- [ParentB].fasta
-- [ParentC].fasta (optional)
-- [ParentD].fasta (optional)
+- [Hybrid]_orf.fasta
+- [ParentA]_orf.fasta
+- [ParentB]_orf.fasta
+- [ParentC]_orf.fasta (optional)
+- [ParentD]_orf.fasta (optional)
 
 
 For example, in our case we have one hybrid genome and two parental strains:
@@ -46,17 +46,17 @@ For example, in our case we have one hybrid genome and two parental strains:
 2 - From the script directory, open a terminal and launch the script pipeline.sh in the following way:
 
 if there is two parental genomes:
-> bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta]
+> bash pipeline.sh [Hybrid] [ParentA] [ParentB]
 
 or if there is three parental genomes:
-> bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta] [ParentC.fasta]
+> bash pipeline.sh [Hybrid] [ParentA] [ParentB] [ParentC]
 
 or if there is four parental genomes:
-> bash pipeline.sh [Hybrid.fasta] [ParentA.fasta] [ParentB.fasta] [ParentC.fasta] [ParentD.fasta]
+> bash pipeline.sh [Hybrid] [ParentA] [ParentB] [ParentC] [ParentD]
 
 
 For example, for the hybrid Saccharomyces pastorianus ("Spastorianus_orf.fasta" file), the parental strains are Saccharomyces eubayanus ("Seubayanus_orf.fasta" file) and Saccharomyces cerevisiae ("Scerevisiae_orf.fasta" file), we type:
-> bash pipeline.sh Spastorianus_orf.fasta Scerevisiae_orf.fasta eubayanus_orf.fasta
+> bash pipeline.sh Spastorianus Scerevisiae eubayanus
 
 The script will go automatically on the Data folder to pick the corresponding ORFs fasta files.
 

@@ -263,7 +263,7 @@ if nb == "2":
     list_paralog_already_processed = []
     
     stop = 0
-    with open("../Results/1_Raw_Blast_output/output_blastn_hybrid_vs_hybrid.txt", "r") as hyb:
+    with open("../Results/1_Raw_Blast_output/output_blastn_"+str(hybrid)+"_vs_"+str(hybrid)+".txt", "r") as hyb:
         next(hyb)
         list_done = []
         for line in hyb:
@@ -915,7 +915,7 @@ elif nb == "3":
     list_paralog_already_processed = []
     
     stop = 0
-    with open("../Results/1_Raw_Blast_output/output_blastn_hybrid_vs_hybrid.txt", "r") as hyb:
+    with open("../Results/1_Raw_Blast_output/output_blastn_"+str(hybrid)+"_vs_"+str(hybrid)+".txt", "r") as hyb:
         next(hyb)
         list_done = []
         for line in hyb:
@@ -2488,7 +2488,7 @@ elif nb == "4":
     list_paralog_already_processed = []
     
     stop = 0
-    with open("../Results/1_Raw_Blast_output/output_blastn_hybrid_vs_hybrid.txt", "r") as hyb:
+    with open("../Results/1_Raw_Blast_output/output_blastn_"+str(hybrid)+"_vs_"+str(hybrid)+".txt", "r") as hyb:
         next(hyb)
         list_done = []
         for line in hyb:
